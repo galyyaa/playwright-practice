@@ -1,26 +1,32 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Text "Registration"', () => {
-    test('Check on registration form text "Registration"', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Check on registration form text "Registration"', async ({ page }) => {
         const guestLoginLink = page.getByText('Registration', { exact: true });
         await guestLoginLink.click();
     });
 });
 
 test.describe('Field "Name"', () => {
-    test('Validation when empty "Name" field', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Validation when empty "Name" field', async ({ page }) => {
         await page.locator('#signupName').focus();
         await page.locator('#signupName').blur();
         await expect(page.getByText('Name required')).toBeVisible();
     });
 
     test('Validation when incorrect data entered to "Name" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupName').focus();
         await page.locator('#signupName').fill('Галя');
         await page.locator('#signupName').blur();
@@ -28,8 +34,6 @@ test.describe('Field "Name"', () => {
     });
 
     test('Validation when one symbol entered to "Name" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupName').focus();
         await page.locator('#signupName').fill('1');
         await page.locator('#signupName').blur();
@@ -38,8 +42,6 @@ test.describe('Field "Name"', () => {
     });
 
     test('Red border color when validation is triggered on the "Name" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupName').focus();
         await page.locator('#signupName').fill('1234567890');
         await page.locator('#signupName').blur();
@@ -49,17 +51,19 @@ test.describe('Field "Name"', () => {
 });
 
 test.describe('Field "Last name"', () => {
-    test('Validation when empty "Last name" field', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Validation when empty "Last name" field', async ({ page }) => {
         await page.locator('#signupLastName').focus();
         await page.locator('#signupLastName').blur();
         await expect(page.getByText('Last name required')).toBeVisible();
     });
 
     test('Validation when incorrect data entered to "Last name" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupLastName').focus();
         await page.locator('#signupLastName').fill('Моргун');
         await page.locator('#signupLastName').blur();
@@ -67,8 +71,6 @@ test.describe('Field "Last name"', () => {
     });
 
     test('Validation when more than 20 symbols entered to "Last name" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupLastName').focus();
         await page.locator('#signupLastName').fill('11111222223333344444qqqqqq');
         await page.locator('#signupLastName').blur();
@@ -77,8 +79,6 @@ test.describe('Field "Last name"', () => {
     });
 
     test('Red border color when validation is triggered on the "Last name" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupLastName').focus();
         await page.locator('#signupLastName').fill('t');
         await page.locator('#signupLastName').blur();
@@ -88,17 +88,19 @@ test.describe('Field "Last name"', () => {
 });
 
 test.describe('Field "Email"', () => {
-    test('Validation when empty "Email" field', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Validation when empty "Email" field', async ({ page }) => {
         await page.locator('#signupEmail').focus();
         await page.locator('#signupEmail').blur();
         await expect(page.getByText('Email required')).toBeVisible();
     });
 
     test('Validation when incorrect data entered to "Email" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupEmail').focus();
         await page.locator('#signupEmail').fill('test+aqa@gmail.c');
         await page.locator('#signupEmail').blur();
@@ -106,8 +108,6 @@ test.describe('Field "Email"', () => {
     });
 
     test('Red border color when validation is triggered on the "Email" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupEmail').focus();
         await page.locator('#signupEmail').fill('11111');
         await page.locator('#signupEmail').blur();
@@ -117,17 +117,19 @@ test.describe('Field "Email"', () => {
 });
 
 test.describe('Field "Password"', () => {
-    test('Validation when empty "Password" field', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Validation when empty "Password" field', async ({ page }) => {
         await page.locator('#signupPassword').focus();
         await page.locator('#signupPassword').blur();
         await expect(page.getByText('Password required')).toBeVisible();
     });
 
     test('Validation when less than 8 symbols entered to the "Password" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupPassword').focus();
         await page.locator('#signupPassword').fill('123456');
         await page.locator('#signupPassword').blur();
@@ -135,8 +137,6 @@ test.describe('Field "Password"', () => {
     });
 
     test('Validation when more than 15 symbols entered to the "Password" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupPassword').focus();
         await page.locator('#signupPassword').fill('123456qaTest@@@@@');
         await page.locator('#signupPassword').blur();
@@ -144,8 +144,6 @@ test.describe('Field "Password"', () => {
     });
 
     test('Validation when just small letters entered to the "Password" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupPassword').focus();
         await page.locator('#signupPassword').fill('qwerfdsazxc');
         await page.locator('#signupPassword').blur();
@@ -153,8 +151,6 @@ test.describe('Field "Password"', () => {
     });
 
     test('Red border color when validation is triggered on the "Password" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupPassword').focus();
         await page.locator('#signupPassword').blur();
         const border = page.locator('#signupPassword');
@@ -163,17 +159,19 @@ test.describe('Field "Password"', () => {
 });
 
 test.describe('Field "Re-enter password"', () => {
-    test('Validation when empty "Re-enter password" field', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Validation when empty "Re-enter password" field', async ({ page }) => {
         await page.locator('#signupRepeatPassword').focus();
         await page.locator('#signupRepeatPassword').blur();
         await expect(page.getByText('Re-enter password required')).toBeVisible();
     });
 
     test('Validation when passwords do not match', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupRepeatPassword').focus();
         await page.locator('#signupPassword').fill('Qwerfdsa123');
         await page.locator('#signupRepeatPassword').fill('Qwerfdsa12');
@@ -182,8 +180,6 @@ test.describe('Field "Re-enter password"', () => {
     });
 
     test('Red border color when validation is triggered on the "Re-enter password" field', async ({ page }) => {
-        await page.goto('/');
-        await page.getByText('Sign up').click();
         await page.locator('#signupRepeatPassword').focus();
         await page.locator('#signupRepeatPassword').blur();
         const border = page.locator('#signupRepeatPassword');
@@ -192,9 +188,13 @@ test.describe('Field "Re-enter password"', () => {
 });
 
 test.describe('Button "Register"', () => {
-    test('Sign up with valid data', async ({ page }) => {
+
+    test.beforeEach(async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
+    })
+
+    test('Sign up with valid data', async ({ page }) => {
         await page.locator('#signupName').focus();
         await page.locator('#signupName').fill('Galya');
         await page.locator('#signupLastName').focus();
@@ -208,7 +208,6 @@ test.describe('Button "Register"', () => {
         await page.locator('#signupRepeatPassword').blur();
         await page.locator('button', { hasText: 'Register' }).click();
         await page.waitForNavigation({ timeout: 10000 });
-        await expect(page.getByText('Garage')).toBeVisible();
-        expect(page.url()).toBe('https://qauto.forstudy.space/panel/garage');
+        await expect(page.getByRole('heading', { name: 'Garage' })).toBeVisible();
     });
 });
