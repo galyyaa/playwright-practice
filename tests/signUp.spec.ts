@@ -1,13 +1,9 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('Text "Registration"', () => {
-
-    test.beforeEach(async ({ page }) => {
+    test('Check on registration form text "Registration"', async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
-    })
-
-    test('Check on registration form text "Registration"', async ({ page }) => {
         const guestLoginLink = page.getByText('Registration', { exact: true });
         await guestLoginLink.click();
     });
@@ -188,13 +184,9 @@ test.describe('Field "Re-enter password"', () => {
 });
 
 test.describe('Button "Register"', () => {
-
-    test.beforeEach(async ({ page }) => {
+    test('Sign up with valid data', async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();
-    })
-
-    test('Sign up with valid data', async ({ page }) => {
         await page.locator('#signupName').focus();
         await page.locator('#signupName').fill('Galya');
         await page.locator('#signupLastName').focus();
