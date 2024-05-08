@@ -183,7 +183,7 @@ test.describe('Field "Re-enter password"', () => {
     });
 });
 
-test.describe('Button "Register"', () => {
+test.describe('Successful sign up', () => {
     test('Sign up with valid data', async ({ page }) => {
         await page.goto('/');
         await page.getByText('Sign up').click();

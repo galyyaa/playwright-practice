@@ -1,0 +1,14 @@
+export const incorrectName = 'Галя';
+export const incorrectLength1 = '1';
+export const incorrectLength2 = '11111222223333344444qqqqqq';
+export const incorrectLastName = 'Моргун';
+export const incorrectEmail = 'test+aqa@gmail.c'
+export const incorrectPasswordSmallLetters = 'qwerfdsazxc';
+export const incorrectPassword = '1234q@';
+export const incorrectPasswordLength = '123456qaTest@@@@@';
+export const correctPassword = 'Qwerfdsa123';
+export const incorrectRepeatPassword = 'Qwerfdsa12';
+export const correctName = 'Galya';
+export const correctLastName = 'Morgun';
+export const correctEmail = 'morgun.galya+aqa08@gmail.com';
+export const correctRepeatPassword = 'Qwerfdsaz123';
