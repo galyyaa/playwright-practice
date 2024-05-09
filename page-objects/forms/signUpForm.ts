@@ -1,6 +1,6 @@
 import { expect, type Locator, type Page } from '@playwright/test';
 import { SignUpButton } from '../components/signUpButton';
-import { correctPassword, incorrectPassword, incorrectPasswordLength, incorrectPasswordSmallLetters, incorrectRepeatPassword } from '../../test-data/credentials';
+import { correctPassword, incorrectPassword, incorrectPasswordSmallLetters, incorrectRepeatPassword } from '../../test-data/credentials';
 
 export class SignUpForm {
     readonly page: Page;
@@ -27,6 +27,12 @@ export class SignUpForm {
         this.formHeader = page.getByRole('heading', { name: 'Registration' });
     }
 
+    async triggerErrorOnElement(text: string, element: Locator) {
+        await element.focus();
+        await element.fill(text);
+        await element.blur();
+    }
+
     async open() {
         const signUpButton = new SignUpButton(this.page);
         await signUpButton.clickSignUpButton();
@@ -39,15 +45,11 @@ export class SignUpForm {
     }
 
     async registerWithIncorrectName(incorrectName: string) {
-        await this.nameField.focus();
-        await this.nameField.fill(incorrectName);
-        await this.nameField.blur();
+        await this.triggerErrorOnElement(incorrectName, this.nameField);
     }
 
-    async registerWrongLengthName(incorrectLength1: string) {
-        await this.nameField.focus();
-        await this.nameField.fill(incorrectLength1);
-        await this.nameField.blur();
+    async registerWrongLengthName(incorrectLength: string) {
+        await this.triggerErrorOnElement(incorrectLength, this.nameField);
     }
 
     async borderColor(id: string, color: string) {
@@ -61,15 +63,11 @@ export class SignUpForm {
     }
 
     async registerWithIncorrectLastName(incorrectLastName: string) {
-        await this.lastNameField.focus();
-        await this.lastNameField.fill(incorrectLastName);
-        await this.lastNameField.blur();
+        await this.triggerErrorOnElement(incorrectLastName, this.lastNameField);
     }
 
-    async registerWrongLengthLastName(incorrectLength2: string) {
-        await this.lastNameField.focus();
-        await this.lastNameField.fill(incorrectLength2);
-        await this.lastNameField.blur();
+    async registerWrongLengthLastName(incorrectLength: string) {
+        await this.triggerErrorOnElement(incorrectLength, this.lastNameField);
     }
 
     async registerWithEmptyEmailField() {
@@ -87,23 +85,16 @@ export class SignUpForm {
         await this.passwordField.focus();
         await this.passwordField.blur();
     }
-
     async registerWithIncorrectPassword(incorrectPassword: string) {
-        await this.passwordField.focus();
-        await this.passwordField.fill(incorrectPassword);
-        await this.passwordField.blur();
+        await this.triggerErrorOnElement(incorrectPassword, this.passwordField);
     }
 
     async registerWithIncorrectPasswordLotSymbols(incorrectPasswordLength: string) {
-        await this.passwordField.focus();
-        await this.passwordField.fill(incorrectPasswordLength);
-        await this.passwordField.blur();
+        await this.triggerErrorOnElement(incorrectPasswordLength, this.passwordField);
     }
 
     async registerWithIncorrectPasswordSmallLeters(incorrectPasswordSmallLetters: string) {
-        await this.passwordField.focus();
-        await this.passwordField.fill(incorrectPasswordSmallLetters);
-        await this.passwordField.blur();
+        await this.triggerErrorOnElement(incorrectPasswordSmallLetters, this.passwordField);
     }
 
     async registerWithEmptyRepeatPasswordField() {
@@ -116,5 +107,25 @@ export class SignUpForm {
         await this.passwordField.fill(correctPassword);
         await this.repeatPasswordField.fill(incorrectRepeatPassword);
         await this.repeatPasswordField.blur();
+    }
+
+    async signUpWithCorrectCredentials(correctName: string, correctLastName: string, correctEmail: string, correctPassword: string, correctRepeatPassword: string) {
+        await this.nameField.focus();
+        await this.nameField.fill(correctName);
+        await this.nameField.blur();
+        await this.lastNameField.focus();
+        await this.lastNameField.fill(correctLastName);
+        await this.lastNameField.blur();
+        await this.emailField.focus();
+        await this.emailField.fill(correctEmail);
+        await this.emailField.blur();
+        await this.passwordField.focus();
+        await this.passwordField.fill(correctPassword);
+        await this.passwordField.blur();
+        await this.repeatPasswordField.focus();
+        await this.repeatPasswordField.fill(correctRepeatPassword);
+        await this.repeatPasswordField.blur();
+        await this.page.waitForSelector('button:enabled');
+        await this.registerButton.click();
     }
 }
