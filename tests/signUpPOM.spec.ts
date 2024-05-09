@@ -3,7 +3,6 @@ import { SignUpButton } from '../page-objects/components/signUpButton';
 import { SignUpForm } from '../page-objects/forms/signUpForm';
 import { incorrectName, incorrectLength, incorrectLastName, incorrectEmail, incorrectPasswordSmallLetters, incorrectPassword, correctPassword, incorrectPasswordLength, incorrectRepeatPassword, correctName, correctLastName, correctEmail, correctRepeatPassword } from '../test-data/credentials';
 import generateRandomEmail from "../utils/generateRandomEmail";
-import { sign } from 'crypto';
 
 test.describe('Field "Name"', () => {
     let signUpForm: SignUpForm;
