@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import generateRandomEmail from "../utils/generateRandomEmail";
 
 test.describe('Text "Registration"', () => {
     test('Check on registration form text "Registration"', async ({ page }) => {
@@ -185,6 +186,7 @@ test.describe('Field "Re-enter password"', () => {
 
 test.describe('Successful sign up', () => {
     test('Sign up with valid data', async ({ page }) => {
+        const randomEmail = generateRandomEmail();
         await page.goto('/');
         await page.getByText('Sign up').click();
         await page.locator('#signupName').focus();
@@ -192,14 +194,13 @@ test.describe('Successful sign up', () => {
         await page.locator('#signupLastName').focus();
         await page.locator('#signupLastName').fill('Morgun');
         await page.locator('#signupEmail').focus();
-        await page.locator('#signupEmail').fill('morgun.galya+aqa07@gmail.com');
+        await page.locator('#signupEmail').fill(randomEmail);
         await page.locator('#signupPassword').focus();
         await page.locator('#signupPassword').fill('Qwerfdsaz123');
         await page.locator('#signupRepeatPassword').focus();
         await page.locator('#signupRepeatPassword').fill('Qwerfdsaz123');
         await page.locator('#signupRepeatPassword').blur();
         await page.locator('button', { hasText: 'Register' }).click();
-        await page.waitForNavigation({ timeout: 10000 });
         await expect(page.getByRole('heading', { name: 'Garage' })).toBeVisible();
     });
 });
