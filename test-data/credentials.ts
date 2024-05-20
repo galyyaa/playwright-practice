@@ -13,3 +13,5 @@ export const correctName = 'Galya';
 export const correctLastName = 'Morgun';
 export const correctEmail = generateRandomEmail();
 export const correctRepeatPassword = 'Qwerfdsaz123';
+export const correctEmail1 = 'morgun.galya22@gmail.com';
+export const correctPassword1 = 'Qwer1234'
