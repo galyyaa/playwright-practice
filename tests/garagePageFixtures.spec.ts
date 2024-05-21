@@ -28,7 +28,7 @@ test.describe('Garage tests', () => {
             await garagePage.updateMileage();
         })
 
-        test('Remove Audi TT from the garage page', async ({ garagePage }) => {
+        test('Remove Audi TT from the garage', async ({ garagePage }) => {
             await garagePage.removeCar();
         })
 
