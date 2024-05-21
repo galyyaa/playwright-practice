@@ -9,7 +9,7 @@ test.describe('Garage tests', () => {
             await garagePage.clickAddCarButton();
             await garagePage.selectBrand('Porsche');
             await garagePage.selectModel('911');
-            await garagePage.enterMileage('1222');
+            await garagePage.enterMileage('2000');
             await garagePage.clickAddButton();
             await expect(garagePage.firstCarName).toHaveText('Porsche 911');
         })
