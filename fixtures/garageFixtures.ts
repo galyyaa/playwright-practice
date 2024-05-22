@@ -7,7 +7,7 @@ export const test = base.extend({
         let garagePage = new GaragePage(page);
 
         await page.goto('/');
-        await garagePage.open();
+        await garagePage.openAsLoggedUser();
         await use(garagePage);
     }
 });

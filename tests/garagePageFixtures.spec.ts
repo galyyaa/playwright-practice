@@ -3,7 +3,7 @@ import { test } from '../fixtures/garageFixtures';
 
 test.describe('Garage tests', () => {
 
-    test.describe('Garage tests with POM and fixtures from user', () => {
+    test.describe('Garage tests with POM and fixtures', () => {
 
         test('Add Porsche 911 car to the garage', async ({ garagePage }) => {
             await garagePage.clickAddCarButton();
