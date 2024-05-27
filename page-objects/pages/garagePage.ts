@@ -43,7 +43,7 @@ export class GaragePage {
         await this.page.goto('/panel/garage');
     }
 
-    async openAsLoggedUser() {
+    async openAsLoggedUser(email: string, password: string) {
         const signInForm = new SignInForm(this.page);
         await signInForm.open();
         await signInForm.loginWithCredentials(correctEmail1, correctPassword1);
