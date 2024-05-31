@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { GaragePage } from '../page-objects/pages/garagePage';
-import { correctEmail1, correctPassword1 } from '../test-data/credentials';
+import { GaragePage } from '../../page-objects/pages/garagePage';
+import { correctEmail1, correctPassword1 } from '../../test-data/credentials';
 
 test.describe('Profile test with mocking API', () => {
     let garagePage: GaragePage;

@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { correctEmail1, correctPassword1 } from '../test-data/credentials';
-import { carBrands } from '../test-data/api/brands';
+import { correctEmail1, correctPassword1 } from '../../test-data/credentials';
+import { carBrands } from '../../test-data/api/brands';
 
 test.describe('Adding one car model and after delete ', () => {
     let sid: string;
