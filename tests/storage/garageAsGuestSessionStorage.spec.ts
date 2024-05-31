@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../fixtures/fuelExpensesFixture'
+import { test } from '../../fixtures/fuelExpensesFixture'
 
 test.describe('Garage tests in guest mode using Session Storage', () => {
 

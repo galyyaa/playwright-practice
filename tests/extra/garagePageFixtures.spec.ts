@@ -1,5 +1,5 @@
 import { expect } from '@playwright/test';
-import { test } from '../fixtures/garageFixtures';
+import { test } from '../../fixtures/garageFixtures';
 
 test.describe('Garage tests', () => {
 
